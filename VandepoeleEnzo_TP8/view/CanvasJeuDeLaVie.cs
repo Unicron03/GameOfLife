@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using VandepoeleEnzo_TP8.model;
@@ -23,10 +24,71 @@ namespace VandepoeleEnzo_TP8.view
             this.Children.Add(line);
         }
 
+        private void DrawGrid()
+        {
+            double height = this.ActualHeight / jeuDeLaVie.nbRow;
+            double width = this.ActualWidth / jeuDeLaVie.nbCol;
+
+            for (double i = 0; i <= jeuDeLaVie.nbRow; i++)
+            {
+                DrawGridLine(0, i * height, this.ActualWidth, i * height);
+            }
+
+            for (double i = 0; i <= jeuDeLaVie.nbCol; i++)
+            {
+                DrawGridLine(i * width, 0, i * width, this.ActualHeight);
+            }
+        }
+
+        private void DrawRect(int X, int Y, int width, int height, Color color)
+        {
+            SolidColorBrush colorPen = new SolidColorBrush(color);
+            System.Windows.Shapes.Rectangle rect = new System.Windows.Shapes.Rectangle();
+            rect.Stroke = colorPen;
+            rect.Fill = colorPen;
+            rect.Width = width - 2;
+            rect.Height = height - 2;
+            Canvas.SetLeft(rect, X + 1);
+            Canvas.SetTop(rect, Y + 1);
+            this.Children.Add(rect);
+        }
+
+        private void Clear()
+        {
+            this.Children.Clear();
+            DrawGrid();
+        }
+
+        public void DisplayNextGeneration()
+        {
+            Clear();
+        }
+
         protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
         {
             base.OnRenderSizeChanged(sizeInfo);
-            DrawGridLine(0, 0, 100, 100);
+            DrawGrid();
+            //DrawRect(0, 0, 50, 50, Colors.Black);
+        }
+
+        protected override void OnMouseDown(MouseButtonEventArgs e)
+        {
+            Point position = e.GetPosition(this);
+            int width = (int)this.ActualWidth / jeuDeLaVie.nbCol;
+            int height = (int)this.ActualHeight / jeuDeLaVie.nbRow;
+            int cellX = (int)position.X / width;
+            int cellY = (int)position.Y / height;
+
+            bool state = jeuDeLaVie.changeCellState(cellX, cellY);
+
+            if (state) DrawRect(cellX * width, cellY * height, width, height, Colors.Black);
+            else DrawRect(cellX * width, cellY * height, width, height, Colors.White);
+        }
+
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            base.OnKeyDown(e);
+            if (e.Key == Key.N) DisplayNextGeneration();
         }
     }
 }
