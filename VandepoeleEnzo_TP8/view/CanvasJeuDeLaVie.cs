@@ -61,7 +61,14 @@ namespace VandepoeleEnzo_TP8.view
 
         public void DisplayNextGeneration()
         {
-            Clear();
+            List<Point> listAliveCell = this.jeuDeLaVie.getListAliveCellNextGeneration();
+            int width = (int)this.ActualWidth / jeuDeLaVie.nbCol;
+            int height = (int)this.ActualHeight / jeuDeLaVie.nbRow;
+
+            foreach (Point item in listAliveCell)
+            {
+                DrawRect((int)item.X * width, (int)item.Y * height, width, height, Colors.Black);
+            }
         }
 
         protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
