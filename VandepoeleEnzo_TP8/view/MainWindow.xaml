@@ -4,9 +4,23 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VandepoeleEnzo_TP8"
+        xmlns:view="clr-namespace:VandepoeleEnzo_TP8.view"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="800" Width="800" SizeToContent="WidthAndHeight">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="Save"/>
+                <Separator />
+                <MenuItem Header="Exit"/>
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem Header="Generations"/>
+            </MenuItem>
+        </Menu>
 
-    </Grid>
+        <Grid>
+            <view:CanvasJeuDeLaVie x:Name="canvasJeuDeLaVie" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Focusable="True" Background="White" Width="800" Height="800"/>
+        </Grid>
+    </DockPanel>
 </Window>

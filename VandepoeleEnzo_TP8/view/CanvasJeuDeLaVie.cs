@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TP09.model;
+﻿using System.Windows.Controls;
+using VandepoeleEnzo_TP8.model;
 
 namespace VandepoeleEnzo_TP8.view
 {
-    public class CanvasJeuDeLaVie
+    public class CanvasJeuDeLaVie : Canvas
     {
         private JeuDeLaVie jeuDeLaVie;
 

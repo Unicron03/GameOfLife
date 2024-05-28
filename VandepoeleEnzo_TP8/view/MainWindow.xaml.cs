@@ -19,6 +19,7 @@ namespace VandepoeleEnzo_TP8.view
         public MainWindow()
         {
             InitializeComponent();
+            canvasJeuDeLaVie.Focus();
         }
     }
 }

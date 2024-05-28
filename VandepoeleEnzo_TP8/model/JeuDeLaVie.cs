@@ -6,7 +6,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace TP09.model
+namespace VandepoeleEnzo_TP8.model
 {
     public class JeuDeLaVie
     {
